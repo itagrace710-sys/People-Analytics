@@ -1,0 +1,6 @@
+{
+  "name": "People Analytics Studio",
+  "description": "End-to-end People Analytics Intelligence Platform: clean messy HR data, build automated data models, query with SQL & Python, generate DAX & Power BI assets, explore interactive dashboards, and manage user accounts with role-based access.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
