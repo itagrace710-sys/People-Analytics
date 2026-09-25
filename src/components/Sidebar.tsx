@@ -14,11 +14,13 @@ import {
   DownloadCloud,
   FileSpreadsheet,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Github,
+  Rocket
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
-  const { activeTab, setActiveTab, dataProfile, isDataCleaned, permissions } = useApp();
+  const { activeTab, setActiveTab, dataProfile, isDataCleaned, permissions, setShowDeployModal } = useApp();
 
   const navItems = [
     { id: 'home', label: 'Home Overview', icon: Home, badge: null },
@@ -121,6 +123,25 @@ export const Sidebar: React.FC = () => {
       {/* Quick Theme Switcher Pill in Sidebar */}
       <div className="p-3 border-t border-slate-800/60">
         <ThemeToggle variant="inline" />
+      </div>
+
+      {/* GitHub Deployment Quick Action */}
+      <div className="px-3 pb-3">
+        <button
+          onClick={() => setShowDeployModal(true)}
+          className="w-full flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-slate-950 to-indigo-950/40 border border-slate-700/80 hover:border-indigo-500/50 text-slate-200 text-xs transition-all group shadow-sm"
+        >
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-indigo-400 group-hover:text-indigo-300">
+              <Github className="w-3.5 h-3.5" />
+            </div>
+            <div className="text-left">
+              <p className="font-semibold text-slate-200 group-hover:text-white leading-tight">Deploy to GitHub</p>
+              <p className="text-[10px] text-slate-400">Pages CI/CD ready</p>
+            </div>
+          </div>
+          <Rocket className="w-3.5 h-3.5 text-indigo-400 group-hover:translate-x-0.5 transition-transform" />
+        </button>
       </div>
 
       {/* Footer Info */}

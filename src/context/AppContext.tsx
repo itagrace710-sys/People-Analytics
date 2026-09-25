@@ -72,6 +72,8 @@ interface AppContextType {
   setShowAddEmployeeModal: (val: boolean) => void;
   showAnalysisModal: boolean;
   setShowAnalysisModal: (val: boolean) => void;
+  showDeployModal: boolean;
+  setShowDeployModal: (val: boolean) => void;
 
   // Data Profiler & Cleaning Engine
   dataProfile: DataProfileSummary;
@@ -227,6 +229,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [lastAnalysisResult, setLastAnalysisResult] = useState<GeneratedAnalysisSummary | null>(null);
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState<boolean>(false);
   const [showAnalysisModal, setShowAnalysisModal] = useState<boolean>(false);
+  const [showDeployModal, setShowDeployModal] = useState<boolean>(false);
 
   // Helper to compute analysis summary from any list of employees
   const computeAnalysisResult = (emps: Employee[]): GeneratedAnalysisSummary => {
@@ -634,6 +637,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setShowAddEmployeeModal,
       showAnalysisModal,
       setShowAnalysisModal,
+      showDeployModal,
+      setShowDeployModal,
       dataProfile,
       dirtyRawData,
       isDataCleaned,

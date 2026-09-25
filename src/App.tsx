@@ -14,6 +14,7 @@ import { UserManagementView } from './components/views/UserManagementView';
 import { ExportCentreView } from './components/views/ExportCentreView';
 import { AddEmployeeModal } from './components/modals/AddEmployeeModal';
 import { AnalysisResultModal } from './components/modals/AnalysisResultModal';
+import { DeployToGithubModal } from './components/modals/DeployToGithubModal';
 import { Menu, X } from 'lucide-react';
 
 const AppContent: React.FC = () => {
@@ -100,6 +101,7 @@ const AppContent: React.FC = () => {
       {/* Global Interactive Modals */}
       <AddEmployeeModal />
       <AnalysisResultModal />
+      <DeployToGithubModal />
     </div>
   );
 };

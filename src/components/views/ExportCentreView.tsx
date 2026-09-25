@@ -10,12 +10,14 @@ import {
   CheckCircle2, 
   Download, 
   ExternalLink,
-  Printer
+  Printer,
+  Github,
+  Rocket
 } from 'lucide-react';
 import Papa from 'papaparse';
 
 export const ExportCentreView: React.FC = () => {
-  const { allEmployees, kpis, daxMeasures, transformationSteps, addAuditLog, permissions } = useApp();
+  const { allEmployees, kpis, daxMeasures, transformationSteps, addAuditLog, permissions, setShowDeployModal } = useApp();
   const [downloadSuccess, setDownloadSuccess] = useState<string | null>(null);
 
   const triggerDownload = (name: string, content: string, mime: string) => {
@@ -92,6 +94,35 @@ export const ExportCentreView: React.FC = () => {
 
       {/* Export Options Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* GitHub Pages Deployment Package */}
+        <div className="bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/40 rounded-xl p-5 shadow-sm flex flex-col justify-between space-y-4 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl group-hover:bg-indigo-500/20 transition-all pointer-events-none" />
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-10 h-10 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-white">
+                <Github className="w-5 h-5 text-indigo-400" />
+              </div>
+              <span className="text-[10px] px-2 py-0.5 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                <Rocket className="w-3 h-3 text-emerald-400" />
+                Live Ready
+              </span>
+            </div>
+            <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
+              <span>Deploy to GitHub Pages</span>
+            </h3>
+            <p className="text-xs text-slate-300 mt-1">
+              Automated CI/CD workflow (.github/workflows/deploy.yml) and gh-pages scripts are configured. Host your app completely free on GitHub.
+            </p>
+          </div>
+          <button
+            onClick={() => setShowDeployModal(true)}
+            className="w-full py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 transition-all flex items-center justify-center gap-2"
+          >
+            <Github className="w-3.5 h-3.5" />
+            <span>Open Deployment Center</span>
+          </button>
+        </div>
+
         {/* Clean CSV Dataset */}
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm flex flex-col justify-between space-y-4">
           <div>

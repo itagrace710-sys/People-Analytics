@@ -3,12 +3,27 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+// Automatically determine the correct base path for GitHub Pages and local environments
+const getBasePath = () => {
+  if (process.env.VITE_BASE_PATH) return process.env.VITE_BASE_PATH;
+  if (process.env.BASE_PATH) return process.env.BASE_PATH;
+  if (process.env.GITHUB_REPOSITORY) {
+    const repoName = process.env.GITHUB_REPOSITORY.split('/')[1];
+    if (repoName) {
+      if (repoName.toLowerCase().endsWith('.github.io')) return '/';
+      return `/${repoName}/`;
+    }
+  }
+  return './';
+};
+
 export default defineConfig(() => {
   return {
+    base: getBasePath(),
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(import.meta.dirname, '.'),
       },
     },
     server: {

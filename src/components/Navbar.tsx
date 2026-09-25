@@ -16,7 +16,8 @@ import {
   UserPlus,
   Play,
   Loader2,
-  Users
+  Users,
+  Github
 } from 'lucide-react';
 import { UserRole } from '../types/user';
 
@@ -36,7 +37,8 @@ export const Navbar: React.FC = () => {
     loadBenchmarkDataset,
     setShowAddEmployeeModal,
     runInstantAnalysis,
-    isAnalyzing
+    isAnalyzing,
+    setShowDeployModal
   } = useApp();
 
   const [showRoleSwitcher, setShowRoleSwitcher] = useState(false);
@@ -178,10 +180,21 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Action Toolbar: Theme Switcher, + Add Person & Instant Analysis */}
+      {/* Action Toolbar: Theme Switcher, GitHub Deploy, + Add Person & Instant Analysis */}
       <div className="flex items-center gap-2">
         {/* Background Theme Switcher Toggle */}
         <ThemeToggle />
+
+        {/* Deploy to GitHub Button */}
+        <button
+          onClick={() => setShowDeployModal(true)}
+          className="px-2.5 md:px-3 py-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 text-slate-200 text-xs font-semibold border border-slate-700/80 hover:border-indigo-500/50 flex items-center gap-1.5 transition-all shadow-sm group"
+          title="Deploy app to GitHub / GitHub Pages"
+        >
+          <Github className="w-3.5 h-3.5 text-indigo-400 group-hover:text-indigo-300 transition-colors" />
+          <span className="hidden sm:inline">GitHub Deploy</span>
+          <span className="sm:hidden">Deploy</span>
+        </button>
 
         <button
           onClick={() => setShowAddEmployeeModal(true)}
